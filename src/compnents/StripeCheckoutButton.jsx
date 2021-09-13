@@ -10,9 +10,9 @@ init("user_sR1LZ07PCdliyJf4jBJqw");
 
 const StripeCheckoutButton = ({ price }) => {
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.userEmail);
+  const userEmail = useSelector(state => state.userEmail);
   const history = useHistory();
-  const items = useSelector((state) => state.items);
+  const items = useSelector(state => state.items);
   const [user, setUser] = useState();
   const date = new Date();
   const priceForStripe = price * 100;
@@ -22,8 +22,8 @@ const StripeCheckoutButton = ({ price }) => {
   useEffect(() => {
     db.collection("user")
       .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        snapshot.docs.map((doc) => {
+      .onSnapshot(snapshot => {
+        snapshot.docs.map(doc => {
           if (doc.data().email == auth.currentUser?.email) {
             setUser({
               id: doc.id,
@@ -34,15 +34,15 @@ const StripeCheckoutButton = ({ price }) => {
       });
   }, []);
   // add order details after buy product
-  const addUserOrder = (event) => {
+  const addUserOrder = event => {
     db.collection("user")
       .doc(user.id)
       .collection("orders")
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         date: date,
-        order: items.map((prod) => prod.title),
-        price: items.map((prod) => prod.price),
+        order: items.map(prod => prod.title),
+        price: items.map(prod => prod.price),
       });
   };
 
@@ -52,7 +52,7 @@ const StripeCheckoutButton = ({ price }) => {
   };
 
   // after payment successfull
-  const onToken = (token) => {
+  const onToken = token => {
     console.log(token);
     addUserOrder();
     dispatch({
@@ -66,11 +66,11 @@ const StripeCheckoutButton = ({ price }) => {
         "user_sR1LZ07PCdliyJf4jBJqw"
       )
       .then(
-        function (response) {
+        function(response) {
           alert("Transaction email sent");
           console.log(response.status, response.text);
         },
-        function (err) {
+        function(err) {
           console.log(err);
         }
       );
@@ -81,7 +81,7 @@ const StripeCheckoutButton = ({ price }) => {
   return (
     <StripeCheckout
       label="Pay Now"
-      name="SysCrowd Co."
+      name="E-Commerce Co."
       billingAddress
       shippingAddress
       image="https://www.freakyjolly.com/wp-content/uploads/2020/04/fj-logo.png"

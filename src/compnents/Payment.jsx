@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Payment.css";
 import CheckoutProduct from "./CheckoutProduct";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
 import StripeCheckoutButton from "./StripeCheckoutButton";
 import { auth, db } from "../firebase";
 
 const Payment = () => {
-  const baskets = useSelector((state) => state.items);
-  const userEmail = useSelector((state) => state.userEmail);
-  const history = useHistory();
+  const baskets = useSelector(state => state.items);
+  const userEmail = useSelector(state => state.userEmail);
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    db.collection("user").onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) => {
-        if (doc.data().email == auth.currentUser?.email) {
+    db.collection("user").onSnapshot(snapshot => {
+      snapshot.docs.map(doc => {
+        if (doc.data().email === auth.currentUser?.email) {
           setCurrentUser(doc.data());
         }
       });
@@ -60,7 +59,7 @@ const Payment = () => {
           <div className="payment__detail">
             <div className="payment__priceContainer">
               <CurrencyFormat
-                renderText={(value) => <h3>Order Total: &nbsp; {value}</h3>}
+                renderText={value => <h3>Order Total: &nbsp; {value}</h3>}
                 decimalScale={2}
                 value={totalPrice}
                 displayType={"text"}

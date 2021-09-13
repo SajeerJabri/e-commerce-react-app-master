@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "../firebase";
 import "./OrderHistory.css";
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const OrderHistory = () => {
   const [user, setUser] = useState();
@@ -11,9 +10,9 @@ const OrderHistory = () => {
   useEffect(() => {
     db.collection("user")
       .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        snapshot.docs.map((doc) => {
-          if (doc.data().email == auth.currentUser?.email) {
+      .onSnapshot(snapshot => {
+        snapshot.docs.map(doc => {
+          if (doc.data().email === auth.currentUser?.email) {
             setUser({
               id: doc.id,
               user: doc.data(),
@@ -30,8 +29,8 @@ const OrderHistory = () => {
       .doc(user?.id)
       .collection("orders")
       .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        setOrders(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setOrders(snapshot.docs.map(doc => doc.data()));
       });
   }, [user]);
   console.log(orders);
@@ -60,7 +59,7 @@ const OrderHistory = () => {
                       {new Date(orderVal?.date?.seconds * 1000).toString()}
                     </td>
                     <td>
-                      {orderVal.order.map((prod) => (
+                      {orderVal.order.map(prod => (
                         <>
                           <span>{prod}</span>
 
@@ -70,7 +69,7 @@ const OrderHistory = () => {
                       ))}
                     </td>
                     <td>
-                      {orderVal.price.map((prod) => (
+                      {orderVal.price.map(prod => (
                         <>
                           <span>{prod} Rs</span> <br />
                           <hr />

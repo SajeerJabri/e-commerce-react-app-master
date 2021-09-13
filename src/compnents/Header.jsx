@@ -3,22 +3,14 @@ import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "@material-ui/core/Button";
 import { auth } from "../firebase";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  DropdownButton,
-  Dropdown,
-  ButtonGroup,
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const Header = () => {
   const history = useHistory();
-  const data = useSelector((state) => state.items);
+  const data = useSelector(state => state.items);
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.userEmail);
+  const userEmail = useSelector(state => state.userEmail);
   const handleLogOut = () => {
     auth.signOut();
     dispatch({

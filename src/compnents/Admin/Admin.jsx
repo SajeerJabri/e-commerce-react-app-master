@@ -17,9 +17,6 @@ const Admin = () => {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [product, setProduct] = useState("");
-  const [progress, setProgress] = useState("");
-  const [categoryID, setCategoryID] = useState("");
-  const [subCategoryID, setSubCategoryID] = useState("");
 
   // admin logout
   const adminLogout = () => {
@@ -32,53 +29,53 @@ const Admin = () => {
   var properSubCategory = null;
   var properProduct = null;
   if (category) {
-    if (category == "Electronics") {
+    if (category === "Electronics") {
       properCategory = "electronic";
-      if (subCategory == "Laptop") {
+      if (subCategory === "Laptop") {
         properSubCategory = "laptop";
-        if (product == "Gaming Laptop") {
+        if (product === "Gaming Laptop") {
           properProduct = "gaming";
-        } else if (product == "MacBook") {
+        } else if (product === "MacBook") {
           properProduct = "macbook";
         } else {
           properProduct = null;
         }
-      } else if (subCategory == "Mobile") {
+      } else if (subCategory === "Mobile") {
         properSubCategory = "mobile";
-        if (product == "Infinix") {
+        if (product === "Infinix") {
           properProduct = "infinix";
-        } else if (product == "Samsung") {
+        } else if (product === "Samsung") {
           properProduct = "samsung";
-        } else if (product == "iPhone") {
+        } else if (product === "iPhone") {
           properProduct = "iphone";
         } else {
           properProduct = null;
         }
-      } else if (subCategory == "Tablet") {
+      } else if (subCategory === "Tablet") {
         properProduct = "tablet";
       } else {
         properProduct = null;
       }
-    } else if (category == "Men Fashion") {
+    } else if (category === "Men Fashion") {
       properCategory = "menFashion";
-      if (subCategory == "Casual Shirts") {
+      if (subCategory === "Casual Shirts") {
         properProduct = "casualShirts";
-      } else if (subCategory == "T-shirt") {
+      } else if (subCategory === "T-shirt") {
         properProduct = "tShirts";
       } else {
         properProduct = null;
       }
-    } else if (category == "Tv & Home Appliances") {
+    } else if (category === "Tv & Home Appliances") {
       properCategory = "homeAppliance";
-      if (subCategory == "Air Conditioner") {
+      if (subCategory === "Air Conditioner") {
         properProduct = "airConditioner";
-      } else if (subCategory == "Home Audio") {
+      } else if (subCategory === "Home Audio") {
         properProduct = "soundBars";
-      } else if (subCategory == "TV & Video Devices") {
+      } else if (subCategory === "TV & Video Devices") {
         properSubCategory = "videoDevices";
-        if (product == "LED Television") {
+        if (product === "LED Television") {
           properProduct = "ledTv";
-        } else if (product == "Projectors") {
+        } else if (product === "Projectors") {
           properProduct = "projector";
         } else {
           properProduct = null;
@@ -88,10 +85,10 @@ const Admin = () => {
       properCategory = null;
     }
   }
-  // ============= end ===========
+  // =================== end ================
   // auth listener login or logout
   auth.onAuthStateChanged(function (user) {
-    if (user && user.displayName == "admin") {
+    if (user && user.displayName === "admin") {
       // User is signed in.
       // console.log(user);
       setAdmin(user.email);
@@ -103,7 +100,7 @@ const Admin = () => {
     }
   });
 
-  // =============== category array ============
+  // ====================== category array ==================
   const Electronics = ["Laptop", "Mobile", "Tablet"];
   const Men_Fashion = ["Casual Shirts", "T-shirt"];
   const Tv_and_Home_Appliances = [
@@ -112,7 +109,7 @@ const Admin = () => {
     "TV & Video Devices",
   ];
 
-  //===== sub category =====
+  //======= sub category =======
   // sub category electronic
   const Laptop = ["Gaming Laptop", "MacBook"];
   const Mobile = ["Infinix", "Samsung", "iPhone"];
@@ -189,7 +186,6 @@ const Admin = () => {
     );
   };
 
-  console.log(subCategoryID);
   return (
     <div>
       {isLogged ? (
@@ -233,7 +229,7 @@ const Admin = () => {
                   value={stock}
                 />
               </Form.Group>
-              {/* ======= category ========== */}
+              {/* ========== category =============== */}
               <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Select Category</Form.Label>
                 <Form.Control
@@ -247,7 +243,7 @@ const Admin = () => {
                   <option>Tv & Home Appliances</option>
                 </Form.Control>
               </Form.Group>
-              {/* ======= sub category ========== */}
+              {/* ========== sub category =============== */}
               {category ? (
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Select Sub Category</Form.Label>
@@ -257,11 +253,11 @@ const Admin = () => {
                     defaultValue="Choose Sub Category..."
                   >
                     <option>Choose Sub Category...</option>
-                    {category == "Electronics"
+                    {category === "Electronics"
                       ? Electronics.map((item) => <option>{item}</option>)
-                      : category == "Men Fashion"
+                      : category === "Men Fashion"
                       ? Men_Fashion.map((item) => <option>{item}</option>)
-                      : category == "Tv & Home Appliances"
+                      : category === "Tv & Home Appliances"
                       ? Tv_and_Home_Appliances.map((item) => (
                           <option>{item}</option>
                         ))
@@ -272,7 +268,7 @@ const Admin = () => {
                 ""
               )}
 
-              {/* ======= product ========== */}
+              {/* ========== product =============== */}
               {subCategory ? (
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Select Product Item</Form.Label>
@@ -282,13 +278,13 @@ const Admin = () => {
                     defaultValue="Choose Product Item..."
                   >
                     <option>Choose Product Item...</option>
-                    {subCategory == "Laptop"
+                    {subCategory === "Laptop"
                       ? Laptop.map((item) => <option>{item}</option>)
-                      : subCategory == "Mobile"
+                      : subCategory === "Mobile"
                       ? Mobile.map((item) => <option>{item}</option>)
-                      : subCategory == "Home Audio"
+                      : subCategory === "Home Audio"
                       ? Home_Audio.map((item) => <option>{item}</option>)
-                      : subCategory == "TV & Video Devices"
+                      : subCategory === "TV & Video Devices"
                       ? TV_and_Video_Devices.map((item) => (
                           <option>{item}</option>
                         ))
@@ -299,7 +295,7 @@ const Admin = () => {
                 ""
               )}
 
-              {/* ============ end category ============= */}
+              {/* ================== end category =================== */}
 
               <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Description</Form.Label>

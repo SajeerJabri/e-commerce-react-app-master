@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 
 const ElectronicProductSlider = ({ electronics, mobile, laptop, tablet }) => {
   const dispatch = useDispatch();

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import Button from "@material-ui/core/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-bootstrap";
-import { HomeWrapper } from "./style";
 import { db } from "../firebase";
 import ElectronicProductSlider from "./ElectronicProductSlider";
 import MenProductSlider from "./MenProductSlider";
@@ -11,9 +9,8 @@ import HomeApplianceProductSlider from "./HomeApplianceProductSlider";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.userEmail);
-  const [product, setProduct] = useState([]);
-  const [productStock, setProductStock] = useState();
+  // const [product, setProduct] = useState([]);
+  // const [productStock, setProductStock] = useState();
   const [gamingLaptop, setGamingLaptop] = useState([]);
   const [macbook, setMacbook] = useState([]);
   const [infinix, setInfinix] = useState([]);
@@ -23,16 +20,16 @@ const Home = () => {
   const [casualShirts, setCasualShirts] = useState([]);
   const [tShirts, setTShirts] = useState([]);
   const [airConditioner, setAirConditioner] = useState([]);
-  const [portablePlayer, setPortablePlayer] = useState([]);
+  // const [portablePlayer, setPortablePlayer] = useState([]);
   const [soundBars, setSoundBars] = useState([]);
   const [ledTv, setLedTv] = useState([]);
   const [projector, setProjector] = useState([]);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProduct(json));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/products")
+  //     .then((res) => res.json())
+  //     .then((json) => setProduct(json));
+  // }, []);
 
   // get electronic gaming laptop product firebase database
   useEffect(() => {
@@ -44,8 +41,8 @@ const Home = () => {
       .collection("laptop")
       .doc("gaming")
       .collection("gaming")
-      .onSnapshot((snapshot) => {
-        setGamingLaptop(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setGamingLaptop(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -69,8 +66,8 @@ const Home = () => {
       .collection("laptop")
       .doc("macbook")
       .collection("macbook")
-      .onSnapshot((snapshot) => {
-        setMacbook(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setMacbook(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -101,8 +98,8 @@ const Home = () => {
       .collection("mobile")
       .doc("infinix")
       .collection("infinix")
-      .onSnapshot((snapshot) => {
-        setInfinix(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setInfinix(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -126,8 +123,8 @@ const Home = () => {
       .collection("mobile")
       .doc("samsung")
       .collection("samsung")
-      .onSnapshot((snapshot) => {
-        setSamsung(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setSamsung(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -151,8 +148,8 @@ const Home = () => {
       .collection("mobile")
       .doc("iphone")
       .collection("iphone")
-      .onSnapshot((snapshot) => {
-        setIphone(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setIphone(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -181,8 +178,8 @@ const Home = () => {
       .collection("products")
       .doc("electronic")
       .collection("tablet")
-      .onSnapshot((snapshot) => {
-        setTablet(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setTablet(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -211,8 +208,8 @@ const Home = () => {
       .collection("products")
       .doc("menFashion")
       .collection("casualShirts")
-      .onSnapshot((snapshot) => {
-        setCasualShirts(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setCasualShirts(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -234,8 +231,8 @@ const Home = () => {
       .collection("products")
       .doc("menFashion")
       .collection("tShirts")
-      .onSnapshot((snapshot) => {
-        setTShirts(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setTShirts(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -265,8 +262,8 @@ const Home = () => {
       .collection("products")
       .doc("homeAppliance")
       .collection("airConditioner")
-      .onSnapshot((snapshot) => {
-        setAirConditioner(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setAirConditioner(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -287,8 +284,8 @@ const Home = () => {
       .collection("products")
       .doc("homeAppliance")
       .collection("soundBars")
-      .onSnapshot((snapshot) => {
-        setSoundBars(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setSoundBars(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -320,8 +317,8 @@ const Home = () => {
       .collection("videoDevices")
       .doc("ledTv")
       .collection("ledTv")
-      .onSnapshot((snapshot) => {
-        setLedTv(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setLedTv(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {
@@ -345,8 +342,8 @@ const Home = () => {
       .collection("videoDevices")
       .doc("projector")
       .collection("projector")
-      .onSnapshot((snapshot) => {
-        setProjector(snapshot.docs.map((doc) => doc.data()));
+      .onSnapshot(snapshot => {
+        setProjector(snapshot.docs.map(doc => doc.data()));
       });
 
     return () => {

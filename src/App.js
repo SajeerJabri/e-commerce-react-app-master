@@ -15,7 +15,6 @@ import ProductItems from "./compnents/ProductItems";
 import EmailVarification from "./compnents/EmailVarification";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import Button from "@material-ui/core/Button";
 import Electronics from "./compnents/Category/Electronics/Electronics";
 import Mobile from "./compnents/Category/Electronics/Mobile";
 import Iphone from "./compnents/Category/Electronics/Iphone";
@@ -36,7 +35,6 @@ import HomeAudio from "./compnents/Category/HomeAppliance/HomeAudio";
 import VideoDevices from "./compnents/Category/HomeAppliance/VideoDevices";
 import OrderHistory from "./compnents/OrderHistory";
 import { auth } from "./firebase";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -45,10 +43,9 @@ const stripePromise = loadStripe(
 );
 function App() {
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.userEmail);
-  const history = useHistory();
+  const userEmail = useSelector(state => state.userEmail);
   const [isVarified, setIsVarified] = useState(false);
-  auth.onAuthStateChanged(function (user) {
+  auth.onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       console.log(user);

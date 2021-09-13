@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
-import firebase from "firebase";
 
 const Login = () => {
   const history = useHistory();

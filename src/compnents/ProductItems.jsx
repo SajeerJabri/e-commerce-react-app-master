@@ -7,14 +7,14 @@ import { Accordion, Card } from "react-bootstrap";
 
 const ProductItems = () => {
   const dispatch = useDispatch();
-  const allProduct = useSelector((state) => state.allProduct);
-  const userEmail = useSelector((state) => state.userEmail);
+  const allProduct = useSelector(state => state.allProduct);
+  const userEmail = useSelector(state => state.userEmail);
   const { id } = useParams();
 
   return (
     <div className="individual__product_item">
       {allProduct.map((product, ind) =>
-        product.title == id ? (
+        product.title === id ? (
           <>
             <div className="individual__product_container">
               <div className="individual__product_left">

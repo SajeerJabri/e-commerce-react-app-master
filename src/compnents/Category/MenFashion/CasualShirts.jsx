@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Category.css";
 import { useSelector, useDispatch } from "react-redux";
-import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";

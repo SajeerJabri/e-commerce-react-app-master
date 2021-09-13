@@ -24,7 +24,7 @@ const StripeCheckoutButton = ({ price }) => {
       .orderBy("timestamp", "desc")
       .onSnapshot(snapshot => {
         snapshot.docs.map(doc => {
-          if (doc.data().email == auth.currentUser?.email) {
+          if (doc.data().email === auth.currentUser?.email) {
             setUser({
               id: doc.id,
               user: doc.data(),

@@ -2,12 +2,10 @@ import React from "react";
 import "./Checkout.css";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
-import Subtotal from "./Subtotal";
 
 const CheckoutProduct = () => {
   const checkoutData = useSelector((state) => state.items);
   const dispatch = useDispatch();
-  console.log(checkoutData);
   return (
     <div className="checkout__product">
       {checkoutData.map((data, ind) => (

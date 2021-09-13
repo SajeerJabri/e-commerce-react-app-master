@@ -1,13 +1,11 @@
 import React from "react";
 import "./Checkout.css";
-import Button from "@material-ui/core/Button";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CheckoutProduct from "./CheckoutProduct";
 import Subtotal from "./Subtotal";
 
 const Checkout = () => {
   const checkoutData = useSelector((state) => state.items);
-  const dispatch = useDispatch();
   return (
     <div className="checkout">
       {checkoutData.length >= 1 ? (

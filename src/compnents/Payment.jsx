@@ -14,11 +14,16 @@ const Payment = () => {
 
   useEffect(() => {
     db.collection("user").onSnapshot(snapshot => {
-      snapshot.docs.map(doc => {
+      snapshot.docs.foreach(doc => {
         if (doc.data().email === auth.currentUser?.email) {
           setCurrentUser(doc.data());
         }
       });
+      // snapshot.docs.map(doc => {
+      //   if (doc.data().email === auth.currentUser?.email) {
+      //     setCurrentUser(doc.data());
+      //   }
+      // });
     });
   }, []);
 

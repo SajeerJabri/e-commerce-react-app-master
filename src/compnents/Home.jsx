@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Carousel } from "react-bootstrap";
 import { db } from "../firebase";
 import ElectronicProductSlider from "./ElectronicProductSlider";

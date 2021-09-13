@@ -11,7 +11,7 @@ const OrderHistory = () => {
     db.collection("user")
       .orderBy("timestamp", "desc")
       .onSnapshot(snapshot => {
-        snapshot.docs.map(doc => {
+        snapshot.docs.foreach(doc => {
           if (doc.data().email === auth.currentUser?.email) {
             setUser({
               id: doc.id,
@@ -19,6 +19,14 @@ const OrderHistory = () => {
             });
           }
         });
+        // snapshot.docs.map(doc => {
+        //   if (doc.data().email === auth.currentUser?.email) {
+        //     setUser({
+        //       id: doc.id,
+        //       user: doc.data(),
+        //     });
+        //   }
+        // });
       });
   }, []);
 

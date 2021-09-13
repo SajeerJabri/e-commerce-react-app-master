@@ -12,6 +12,7 @@ const Admin = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
+  const [progress, setProgress] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
@@ -87,7 +88,7 @@ const Admin = () => {
   }
   // =================== end ================
   // auth listener login or logout
-  auth.onAuthStateChanged(function (user) {
+  auth.onAuthStateChanged(function(user) {
     if (user && user.displayName === "admin") {
       // User is signed in.
       // console.log(user);
@@ -119,25 +120,25 @@ const Admin = () => {
   const TV_and_Video_Devices = ["LED Television", "Projectors"];
 
   // handle image uploader
-  const uploadFile = (event) => {
+  const uploadFile = event => {
     if (event.target.files[0]) {
       setImage(event.target.files[0]);
     }
   };
 
   // add product in database
-  const handleAddProduct = (event) => {
+  const handleAddProduct = event => {
     event.preventDefault();
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       //'state_changed' observer, called any time the state changes
       "state_changed",
-      (snapshot) => {
+      snapshot => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
         setProgress(progress);
       },
-      (error) => {
+      error => {
         // Handle unsuccessful uploads
         alert(error.message);
       },
@@ -147,7 +148,7 @@ const Admin = () => {
           .ref("images")
           .child(image.name)
           .getDownloadURL()
-          .then((url) => {
+          .then(url => {
             // add download image url and caption into database
 
             if (properSubCategory) {
@@ -207,7 +208,7 @@ const Admin = () => {
                 <Form.Control
                   type="text"
                   placeholder="Title"
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={e => setTitle(e.target.value)}
                   value={title}
                 />
               </Form.Group>
@@ -216,7 +217,7 @@ const Admin = () => {
                 <Form.Control
                   type="number"
                   placeholder="Price"
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={e => setPrice(e.target.value)}
                   value={price}
                 />
               </Form.Group>
@@ -225,7 +226,7 @@ const Admin = () => {
                 <Form.Control
                   type="number"
                   placeholder="Stock"
-                  onChange={(e) => setStock(e.target.value)}
+                  onChange={e => setStock(e.target.value)}
                   value={stock}
                 />
               </Form.Group>
@@ -234,7 +235,7 @@ const Admin = () => {
                 <Form.Label>Select Category</Form.Label>
                 <Form.Control
                   as="select"
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={e => setCategory(e.target.value)}
                   defaultValue="Choose Category..."
                 >
                   <option>Choose Category...</option>
@@ -249,16 +250,16 @@ const Admin = () => {
                   <Form.Label>Select Sub Category</Form.Label>
                   <Form.Control
                     as="select"
-                    onChange={(e) => setSubCategory(e.target.value)}
+                    onChange={e => setSubCategory(e.target.value)}
                     defaultValue="Choose Sub Category..."
                   >
                     <option>Choose Sub Category...</option>
                     {category === "Electronics"
-                      ? Electronics.map((item) => <option>{item}</option>)
+                      ? Electronics.map(item => <option>{item}</option>)
                       : category === "Men Fashion"
-                      ? Men_Fashion.map((item) => <option>{item}</option>)
+                      ? Men_Fashion.map(item => <option>{item}</option>)
                       : category === "Tv & Home Appliances"
-                      ? Tv_and_Home_Appliances.map((item) => (
+                      ? Tv_and_Home_Appliances.map(item => (
                           <option>{item}</option>
                         ))
                       : ""}
@@ -274,18 +275,18 @@ const Admin = () => {
                   <Form.Label>Select Product Item</Form.Label>
                   <Form.Control
                     as="select"
-                    onChange={(e) => setProduct(e.target.value)}
+                    onChange={e => setProduct(e.target.value)}
                     defaultValue="Choose Product Item..."
                   >
                     <option>Choose Product Item...</option>
                     {subCategory === "Laptop"
-                      ? Laptop.map((item) => <option>{item}</option>)
+                      ? Laptop.map(item => <option>{item}</option>)
                       : subCategory === "Mobile"
-                      ? Mobile.map((item) => <option>{item}</option>)
+                      ? Mobile.map(item => <option>{item}</option>)
                       : subCategory === "Home Audio"
-                      ? Home_Audio.map((item) => <option>{item}</option>)
+                      ? Home_Audio.map(item => <option>{item}</option>)
                       : subCategory === "TV & Video Devices"
-                      ? TV_and_Video_Devices.map((item) => (
+                      ? TV_and_Video_Devices.map(item => (
                           <option>{item}</option>
                         ))
                       : ""}
@@ -302,7 +303,7 @@ const Admin = () => {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={e => setDescription(e.target.value)}
                   value={description}
                 />
               </Form.Group>

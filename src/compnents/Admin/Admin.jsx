@@ -12,7 +12,7 @@ const Admin = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
-  const [progress, setProgress] = useState("");
+  // const [progress, setProgress] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
@@ -136,7 +136,7 @@ const Admin = () => {
       snapshot => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
-        setProgress(progress);
+        // setProgress(progress);
       },
       error => {
         // Handle unsuccessful uploads
@@ -161,7 +161,7 @@ const Admin = () => {
                 stock: stock,
                 title: title,
               });
-              setProgress(0);
+              // setProgress(0);
               setDescription("");
               setImage("");
               setPrice("");
@@ -175,7 +175,7 @@ const Admin = () => {
                 stock: stock,
                 title: title,
               });
-              setProgress(0);
+              // setProgress(0);
               setDescription("");
               setImage("");
               setPrice("");
